@@ -1,0 +1,34 @@
+---
+resources:
+- name: version
+  type: semver
+  source:
+    driver: git
+    initial_version: 0.0.1
+    uri: 
+    branch: master
+    file: semantic_version_file_placeholder
+    private_key:
+    username:
+    password:
+    git_user:
+    depth:
+    commit_message:
+
+jobs:
+- name: display-version
+  public: true
+  serial: true
+  plan:
+  - get: version
+  - task: display-version
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: busybox}
+      inputs:
+      - name: version
+      run:
+        path: cat
+        args: [version/number]
