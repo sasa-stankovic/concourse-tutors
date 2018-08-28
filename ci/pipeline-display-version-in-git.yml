@@ -4,7 +4,7 @@ resources:
   type: semver
   source:
     driver: git
-    initial_version: 0.0.1
+    initial_version: 0.1.2
     uri: "https://github.com/sasa-stankovic/concourse-tutors.git"
     branch: master
     file: semantic_version_file_placeholder
