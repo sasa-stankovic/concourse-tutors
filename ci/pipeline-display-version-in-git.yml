@@ -5,22 +5,25 @@ resources:
   source:
     driver: git
     initial_version: 0.0.1
-    uri: 
+    uri: "https://github.com/sasa-stankovic/concourse-tutors.git"
     branch: master
     file: semantic_version_file_placeholder
-    private_key:
-    username:
-    password:
-    git_user:
+    private_key:  
+    username: sasa-stankovic
+    password:  
+    git_user: stankovic@sasha.in.rs
     depth:
-    commit_message:
+    commit_message: 
 
 jobs:
-- name: display-version
+- name: bump-version
   public: true
   serial: true
   plan:
   - get: version
+    params: {pre: rc}
+  - put: version
+    params: {file: version/number}
   - task: display-version
     config:
       platform: linux
